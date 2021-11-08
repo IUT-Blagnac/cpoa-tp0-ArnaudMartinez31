@@ -13,8 +13,8 @@ public class StepDefinitions {
     }
 
     @When("{word} is declared as recipient")
-    public void declaring_recipient(String who){
-    o.setRecipient(who);
+    public void declaring_recipient(String who) {
+        o.setRecipient(who);
     }
 
     @Then("the order does not contain any drinks")
@@ -23,27 +23,19 @@ public class StepDefinitions {
         assertEquals(0, drinks.size());
     }
 
-    @When("a {string} is added to the order")
-    public void add_drink_to_the_order(String drinkName){
+    @When("a(nother?) {string} is added to the order")
+    public void add_drink_to_the_order(String drinkName) {
         o.getDrinks().add(new Order.Drink(drinkName));
     }
 
-    @Then("the order contains {int} drink")
+    @Then("the order contains {int} drink(s?)")
     public void check_order_size(int size) {
         assertEquals(size, o.getDrinks().size());
-
-    @When("a(nother?) {string} is added to the order")
-    public void add_drink_to_the_order(String drinkName){ /* ... */ }
-
-    @Then("the order contains {int} drink(s?)")
-    public void check_order_size(int size) { /* ... */ }
     }
 
     @Then("the order contains {int} {string}")
     public void check_order_contents(int size, String drink) {
-        long count = o.getDrinks().stream()
-                    .filter(d -> d.getName().equals(drink))
-                    .count();
-        assertEquals(size,count);
-}
+        long count = o.getDrinks().stream().filter(d -> d.getName().equals(drink)).count();
+        assertEquals(size, count);
+    }
 }

@@ -3,13 +3,16 @@ import java.util.LinkedList;
 
 public class Order {
     private List<Drink> contents = new LinkedList<>();
-
+    
+    public List<Drink> getDrinks() { return contents; }
+    
     static class Drink {
         public Drink(String name){ this.name = name; }
         private String name;
         public String getName() { return name; }
+        @Override public String toString() { return name; }
     }
-    
+
     private String owner;
     public void setOwner(String who) { this.owner = who; }
 
@@ -20,8 +23,4 @@ public class Order {
     public String toString() {
         return "Order: " + owner + " / " + recipient + " / { " + contents + "}";
     }
-
-    
 }
-
-
